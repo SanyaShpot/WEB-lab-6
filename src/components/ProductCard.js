@@ -1,9 +1,8 @@
 import React from 'react';
 
 const ProductCard = ({ product }) => {
-    // Перевіряємо, чи продукт є об'єктом і має необхідні властивості
     if (!product || !product.image) {
-        return <div>Завантаження...</div>; // Або повернути інший елемент, якщо дані ще не доступні
+        return <div>...</div>;
     }
 
     return (
@@ -21,7 +20,7 @@ const ProductCard = ({ product }) => {
                 Виробник: <span className="font-semibold">{product.manufacturer}</span>
             </p>
             <p>
-                Ціна: <span className="font-semibold">${product.price}</span>
+                Ціна: <span className="font-semibold">{product.price} грн</span>
             </p>
             <p>
                 Матеріал: <span className="font-semibold">{product.material}</span>

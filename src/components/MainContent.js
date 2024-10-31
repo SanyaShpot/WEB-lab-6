@@ -2,31 +2,30 @@ import React from 'react';
 import ProductCard from './ProductCard';
 
 const MainContent = () => {
-    // Створюємо масив продуктів
     const products = [
         {
-            name: "Classic Pine",
-            price: "50",
-            image: "https://via.placeholder.com/150",
-            height: 180, // Додано для прикладу
-            manufacturer: "Evergreen Co.",
-            material: "PVC"
+            name: "Різдвяна",
+            price: "1500",
+            image: "https://auau.com.ua/wp-content/uploads/2023/11/yalbyra-3n-na-krabakh-1.jpg",
+            height: 180,
+            manufacturer: "EcoTree",
+            material: "Пластик"
         },
         {
-            name: "Snowy Fir",
-            price: "70",
-            image: "https://via.placeholder.com/150",
-            height: 210, // Додано для прикладу
-            manufacturer: "Winter Trees",
-            material: "PE"
+            name: "Новорічна",
+            price: "1200",
+            image: "https://auau.com.ua/wp-content/uploads/2023/11/yalbyra-3n-na-krabakh-1.jpg",
+            height: 210,
+            manufacturer: "EcoTree",
+            material: "Пластик"
         },
         {
-            name: "Decorated Spruce",
-            price: "90",
-            image: "https://via.placeholder.com/150",
-            height: 200, // Додано для прикладу
-            manufacturer: "Holiday Decor",
-            material: "PVC"
+            name: "Зелена",
+            price: "1300",
+            image: "https://auau.com.ua/wp-content/uploads/2023/11/yalbyra-3n-na-krabakh-1.jpg",
+            height: 200,
+            manufacturer: "EcoTree",
+            material: "Пластик"
         }
     ];
 
