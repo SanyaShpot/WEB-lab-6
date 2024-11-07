@@ -1,9 +1,29 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-const Header = () => (
-  <header className="header">
-    <h1>Christmas Tree Store</h1>
-  </header>
-);
+const Header = () => {
+  const location = useLocation();
+
+  const getPageTitle = () => {
+    if (location.pathname.startsWith('/item')) {
+      return 'Item Page';
+    }
+
+    switch (location.pathname) {
+      case '/':
+        return 'Home Page';
+      case '/catalog':
+        return 'Catalog';
+      default:
+        return 'Christmas Tree Store';
+    }
+  };
+
+  return (
+    <header className="header">
+      <h1>{getPageTitle()}</h1>
+    </header>
+  );
+};
 
 export default Header;

@@ -14,19 +14,48 @@ body {
   background-color: #333;
   color: #fefefe;
   text-align: center;
-  padding: 20px 0;
+  padding: 10px 0;
+  width: 100%;
 }
 
 .header h1 {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
 .navbar {
   background-color: #4caf50;
-  padding: 10px 0;
-  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 200px;
+}
+
+.logo-container {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo {
+  width: 50px;
+  height: auto;
 }
 
 .nav-list {
@@ -38,10 +67,24 @@ body {
   gap: 20px;
 }
 
+.nav-list li {
+  display: inline-block;
+}
+
 .nav-list a {
   color: white;
   text-decoration: none;
   font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+  color: #ffd700;
+}
+
+.nav-list a:active {
+  color: #ff6347;
 }
 
 .main-content {
@@ -49,8 +92,32 @@ body {
 }
 
 .intro {
-  text-align: center;
-  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.home-image {
+  width: 400px;
+  height: auto;
+  margin-right: 40px;
+}
+
+.intro-text {
+  max-width: 600px;
+}
+
+.intro-text h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.intro-text p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #555;
 }
 
 .product-grid {
@@ -60,7 +127,7 @@ body {
 }
 
 .product-card {
-  background-color: #fff;
+  background-color: #daeedb;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
@@ -83,7 +150,6 @@ body {
   margin: 10px 0;
 }
 
-
 .footer {
   background-color: #333;
   color: #fefefe;
@@ -100,4 +166,262 @@ body {
 
 .product-card p {
   margin: 5px 0;
+}
+
+.catalog-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.view-more-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.view-more-button:hover {
+  background-color: #45a049;
+}
+
+.view-more-button:active {
+  background-color: #3e8e41;
+}
+
+.view-more-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4caf50;
+}
+
+.content-blocks {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.block-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.content-block {
+  width: 25%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #daeedb;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.content-title {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.content-text {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.view-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.view-more-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-more-button:hover {
+  background-color: #45a049;
+}
+
+.view-more-button:active {
+  background-color: #3e8e41;
+}
+
+.view-more-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4caf50;
+}
+
+.catalog-filters {
+  width: 100%;
+  background-color: #d5cda1;
+  color: white;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.filters-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 10px;
+}
+
+.filter {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.apply-button {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;  
+  margin-right: 10px;
+}
+
+.apply-button:hover {
+  background-color: #45a049;
+}
+
+.apply-button:active {
+  background-color: #3e8e41;
+}
+
+.item-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-content {
+  display: flex;
+  gap: 20px;
+}
+
+.product-image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.product-detail {
+  background-color: #d5cda1;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.product-price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.back-button,
+.add-to-cart-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+.back-button {
+  background-color: #ddd;
+}
+
+.add-to-cart-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.add-to-cart-button:hover {
+  background-color: #45a049;
+}
+
+.add-to-cart-button:active {
+  background-color: #3e8e41;
+}
+
+.add-to-cart-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4caf50;
 }
