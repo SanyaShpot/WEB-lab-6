@@ -7,6 +7,7 @@ import CatalogPage from './components/CatalogPage';
 import ItemPage from './components/ItemPage';
 import CatalogFilters from './components/CatalogFilters';
 import Footer from './components/Footer';
+import { ProductProvider } from './components/ProductContext';
 import './index.css';
 
 function App() {
@@ -22,29 +23,31 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="app-container">
-        <Header setSearchTerm={setSearchTerm} />
-        <NavBar setSearchTerm={setSearchTerm} />
-        <Routes>
-          <Route path="/" element={<MainContent />} />
-          <Route
-            path="/catalog"
-            element={
-              <>
-                <CatalogFilters applyFilters={applyFilters} />
-                <CatalogPage searchTerm={searchTerm} filters={filters} />
-              </>
-            }
-          />
-          <Route
-            path="/item/:productId"
-            element={<ItemPage />}
-          />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <ProductProvider>
+      <Router>
+        <div className="app-container">
+          <Header setSearchTerm={setSearchTerm} />
+          <NavBar setSearchTerm={setSearchTerm} />
+          <Routes>
+            <Route path="/" element={<MainContent />} />
+            <Route
+              path="/catalog"
+              element={
+                <>
+                  <CatalogFilters applyFilters={applyFilters} />
+                  <CatalogPage searchTerm={searchTerm} filters={filters} />
+                </>
+              }
+            />
+            <Route
+              path="/item/:productId"
+              element={<ItemPage />}
+            />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </ProductProvider>
   );
 }
 

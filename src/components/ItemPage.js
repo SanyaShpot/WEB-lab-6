@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
-const products = [
-  { id: 1, name: "Різдвяна", price: 1500, image: "https://cdn.27.ua/sc--media--prod/default/88/85/84/88858439-d2d7-4710-ab37-db8f343ba4dd.jpg", height: 180, manufacturer: "EcoTree", material: "Plastic" },
-  { id: 2, name: "Новорічна", price: 1200, image: "https://auau.com.ua/wp-content/uploads/2023/11/yalbyra-3n-na-krabakh-1.jpg", height: 210, manufacturer: "EcoTree", material: "Plastic" },
-  { id: 3, name: "Зелена", price: 1300, image: "https://nashayalunka.com/upload/catalog/200/174/elitgreen.jpg", height: 200, manufacturer: "EcoTree", material: "Wood" }
-];
+import { ProductContext } from './ProductContext';
 
 const ItemPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
+  const { products } = useContext(ProductContext);
 
   const product = products.find((product) => product.id === parseInt(productId));
 
