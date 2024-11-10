@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ setSearchTerm }) => {
   const location = useLocation();
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <nav className="navbar">
@@ -14,12 +18,13 @@ const NavBar = () => {
         <li><Link to="/catalog">Catalog</Link></li>
         <li><Link to="/cart">Cart</Link></li>
       </ul>
-      
+
       {location.pathname === '/catalog' && (
         <input
           type="text"
           placeholder="Search..."
           className="search-input"
+          onChange={handleSearch}
         />
       )}
     </nav>
