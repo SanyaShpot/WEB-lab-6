@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import { ProductContext } from './ProductContext';
+import Spinner from './Spinner';
 
 const CatalogPage = ({ searchTerm, filters }) => {
-  const { products } = useContext(ProductContext);
+  const { products, loading } = useContext(ProductContext);
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
@@ -25,6 +26,10 @@ const CatalogPage = ({ searchTerm, filters }) => {
 
     setFilteredProducts(filtered);
   }, [searchTerm, filters, products]);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <main className="catalog-page">
