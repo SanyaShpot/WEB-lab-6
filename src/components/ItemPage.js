@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { ProductContext } from './ProductContext';
+import { addItem } from '../redux/cartSlice';
 
 const ItemPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { products } = useContext(ProductContext);
+  const dispatch = useDispatch();
 
   const product = products.find((product) => product.id === parseInt(productId));
 
@@ -21,6 +24,17 @@ const ItemPage = () => {
     manufacturer: product.manufacturer,
     material: product.material,
     description: "This Christmas tree is an environmentally friendly product that gives a natural look to your holiday decor. Made of quality materials for long-term use.",
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+      })
+    );
   };
 
   return (
@@ -43,7 +57,7 @@ const ItemPage = () => {
         <p className="product-price">{productDetails.price}</p>
         <div className="button-group">
           <button className="back-button" onClick={() => navigate(-1)}>Go back</button>
-          <button className="add-to-cart-button">Add to cart</button>
+          <button className="add-to-cart-button" onClick={handleAddToCart}>Add to cart</button>
         </div>
       </div>
     </div>

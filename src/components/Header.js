@@ -14,6 +14,8 @@ const Header = () => {
         return 'Home Page';
       case '/catalog':
         return 'Catalog';
+      case '/cart':
+        return 'Cart';
       default:
         return 'Christmas Tree Store';
     }
