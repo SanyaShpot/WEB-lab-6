@@ -1,31 +1,33 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import ProductCard from './ProductCard';
 import { ProductContext } from './ProductContext';
 import Spinner from './Spinner';
+import { getProducts } from '../api/api';
 
 const CatalogPage = ({ searchTerm, filters }) => {
-  const { products, loading } = useContext(ProductContext);
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const { setProducts, loading, setLoading } = useContext(ProductContext);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const fetchFilteredProducts = useCallback(async () => {
+    setLoading(true);
+    try {
+      const validFilters = filters || {};
+      const term = searchTerm || '';
+  
+      const fetchedProducts = await getProducts({ ...validFilters, searchTerm: term });
+      setProducts(fetchedProducts);
+      setFilteredProducts(fetchedProducts);
+    } catch (error) {
+      console.error('Error fetching filtered products:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [filters, searchTerm, setLoading, setProducts]);
+  
 
   useEffect(() => {
-    let filtered = products.filter(product =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    if (filters.price !== 'none') {
-      filtered = filtered.sort((a, b) => (filters.price === 'asc' ? a.price - b.price : b.price - a.price));
-    }
-
-    if (filters.height !== 'none') {
-      filtered = filtered.sort((a, b) => (filters.height === 'asc' ? a.height - b.height : b.height - a.height));
-    }
-
-    if (filters.material !== 'none') {
-      filtered = filtered.filter(product => product.material.toLowerCase() === filters.material.toLowerCase());
-    }
-
-    setFilteredProducts(filtered);
-  }, [searchTerm, filters, products]);
+    fetchFilteredProducts();
+  }, [fetchFilteredProducts]);
 
   if (loading) {
     return <Spinner />;
@@ -35,9 +37,13 @@ const CatalogPage = ({ searchTerm, filters }) => {
     <main className="catalog-page">
       <h2>Catalog of Products</h2>
       <div className="product-grid">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <p>No products found</p>
+        )}
       </div>
     </main>
   );

@@ -37,3 +37,37 @@ exports.createProduct = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.getFilteredProducts = async (req, res) => {
+  const { searchTerm, price, height, material } = req.query;
+
+  try {
+    let whereConditions = {};
+
+    if (material && material !== 'none') {
+      whereConditions.material = material;
+    }
+
+    let products = await Product.findAll({ where: whereConditions });
+
+    if (searchTerm) {
+      products = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    if (price && price !== 'none') {
+      products.sort((a, b) => (price === 'asc' ? a.price - b.price : b.price - a.price));
+    }
+
+    if (height && height !== 'none') {
+      products.sort((a, b) => (height === 'asc' ? a.height - b.height : b.height - a.height));
+    }
+
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+

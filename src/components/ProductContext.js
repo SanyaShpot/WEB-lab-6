@@ -10,6 +10,7 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoading(true);
         const fetchedProducts = await getProducts();
         setProducts(fetchedProducts);
       } catch (error) {
@@ -23,7 +24,7 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ products, setProducts, loading }}>
+    <ProductContext.Provider value={{ products, setProducts, loading, setLoading }}>
       {children}
     </ProductContext.Provider>
   );
