@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { ProductContext } from './ProductContext';
 import { addItem } from '../redux/cartSlice';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ItemPage = () => {
   const { productId } = useParams();
@@ -35,6 +37,15 @@ const ItemPage = () => {
         image: product.image,
       })
     );
+    toast.success(`${productDetails.name} was successfully added to your cart!`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
   };
 
   return (
@@ -60,6 +71,7 @@ const ItemPage = () => {
           <button className="add-to-cart-button" onClick={handleAddToCart}>Add to cart</button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
