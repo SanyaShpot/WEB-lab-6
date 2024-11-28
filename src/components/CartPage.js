@@ -1,16 +1,35 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addItem, removeItem } from "../redux/cartSlice";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem, removeItem } from '../redux/cartSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartPage = () => {
   const items = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const totalAmount = items.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  const handleContinue = () => {
+    if (items.length > 0) {
+      navigate('/checkout');
+    } else {
+      toast.error('Your cart is empty! Please add items before continuing.', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'colored',
+      });
+    }
+  };
 
   return (
     <div className="cart-page">
@@ -45,9 +64,15 @@ const CartPage = () => {
           <Link to="/catalog" className="back-to-catalog">
             Back to Catalog
           </Link>
-          <button disabled={!items.length}>Continue</button>
+          <button
+            onClick={handleContinue}
+            className="continue-button"
+          >
+            Continue
+          </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

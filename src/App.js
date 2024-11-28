@@ -9,6 +9,8 @@ import CatalogPage from './components/CatalogPage';
 import ItemPage from './components/ItemPage';
 import CatalogFilters from './components/CatalogFilters';
 import CartPage from './components/CartPage';
+import CheckoutPage from './components/CheckoutPage';
+import SuccessPage from './components/SuccessPage';
 import Footer from './components/Footer';
 import { ProductProvider } from './components/ProductContext';
 import './index.css';
@@ -45,6 +47,8 @@ function App() {
               />
               <Route path="/item/:productId" element={<ItemPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/success" element={<SuccessPage />} />
             </Routes>
             <Footer />
           </div>

@@ -16,6 +16,10 @@ const Header = () => {
         return 'Catalog';
       case '/cart':
         return 'Cart';
+      case '/checkout':
+        return 'Checkout';
+      case '/success':
+        return 'Success';
       default:
         return 'Christmas Tree Store';
     }
